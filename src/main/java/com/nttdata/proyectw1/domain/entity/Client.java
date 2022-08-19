@@ -13,5 +13,6 @@ public class Client {
     private String clientType;
     private String name;
     private String documentNumber;
-    private List<Product> productList;
+    private List<Passive> passiveList;
+    private List<Active> activeList;
 }

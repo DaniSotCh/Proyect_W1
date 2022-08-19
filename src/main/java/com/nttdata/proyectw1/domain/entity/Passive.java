@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 public class Passive {
     private ProductTypeEnum productType;
+    private String accountNumber;
     private boolean commission;
     private boolean movementLimit;
     private MovementTypeEnum movementType;
