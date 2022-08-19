@@ -1,11 +1,12 @@
 package com.nttdata.proyectw1.domain.entity;
 
+import com.nttdata.proyectw1.domain.util.constant.ProductTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Active {
-    private String type;//personal - empresarial - tc
+    private ProductTypeEnum productType;
     private Double creditLimit;
 }
