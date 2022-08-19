@@ -8,5 +8,6 @@ import lombok.Setter;
 @Setter
 public class Active {
     private ProductTypeEnum productType;
+    private String activeNumber;
     private Double creditLimit;
 }
