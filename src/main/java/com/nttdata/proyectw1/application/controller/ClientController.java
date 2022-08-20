@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping(name = "client")
+@RequestMapping(name = "/client")
 public class ClientController {
 
     @PostMapping
