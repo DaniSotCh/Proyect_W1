@@ -1,6 +1,6 @@
 package com.nttdata.proyectw1.domain.service;
 
-import ch.qos.logback.core.net.server.Client;
+import com.nttdata.proyectw1.domain.entity.Client;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

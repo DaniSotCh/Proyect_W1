@@ -1,8 +1,6 @@
 package com.nttdata.proyectw1.domain.repository;
 
 import com.nttdata.proyectw1.domain.entity.Client;
-import reactor.core.publisher.Mono;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface IClientRepository {
-    Mono<Void> createClient(Client client);
-}
+public interface IClientRepository extends MongoRepository<Client, String> { }
