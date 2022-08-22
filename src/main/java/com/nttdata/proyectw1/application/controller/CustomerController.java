@@ -1,40 +1,45 @@
 package com.nttdata.proyectw1.application.controller;
 
 import com.nttdata.proyectw1.domain.entity.Customer;
+import com.nttdata.proyectw1.domain.service.ICustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/customer")
+@RequestMapping("/customer")
 public class CustomerController {
 
-    @PostMapping
-    public Mono<String> createCustomer(@RequestBody Customer customer){
-        return Mono.just("Successful Registration");
+    @Autowired
+    ICustomerService customerService;
+
+    @PostMapping()
+    public Mono<ResponseEntity> createCustomer(@RequestBody Customer customer){
+        return customerService.createCustomer(customer);
     }
 
     @PutMapping("/{documentNumber}")
-    public Mono<String> updateCustomer(@RequestBody Customer customer, @RequestAttribute String documentNumber){
-        return Mono.just("Successful Update");
+    public Mono<ResponseEntity> updateCustomer(@RequestBody Customer customer, @PathVariable(name = "documentNumber") String documentNumber){
+        return customerService.updateCustomer(customer,documentNumber);
     }
 
     @GetMapping("/{documentNumber}")
-    public Mono<Customer> getCustomer(@RequestAttribute String documentNumber){
-        return Mono.just(new Customer());
+    public Mono<ResponseEntity<Customer>> getCustomer(@PathVariable(name = "documentNumber") String documentNumber){
+        return customerService.getCustomer(documentNumber);
     }
 
     @GetMapping("/getCustomers")
     public Flux<List<Customer>> getCustomers(){
-        return Flux.just(new ArrayList<Customer>());
+        return customerService.getAllCustomers();
     }
 
     @DeleteMapping("/{documentNumber}")
-    public Mono<String> deleteCustomer(@RequestAttribute String documentNumber){
-        return Mono.just("Successful Delete");
+    public Mono<ResponseEntity> deleteCustomer(@PathVariable(name = "documentNumber") String documentNumber){
+        return customerService.deleteCustomer(documentNumber);
     }
 
 
