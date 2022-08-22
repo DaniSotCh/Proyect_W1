@@ -1,9 +1,10 @@
 package com.nttdata.proyectw1.domain.entity;
 
+import com.nttdata.proyectw1.domain.util.constant.MovementTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -12,6 +13,6 @@ public class BankAccount {
     private Customer customer;
     private Product product;
     private Double amount;
-    private Date date;
-    private String movementType;
+    private LocalDateTime date;
+    private MovementTypeEnum movementType;
 }
