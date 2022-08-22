@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class BankAccount {
-    private Client client;
+    private Customer customer;
     private Product product;
     private Double amount;
     private Date date;

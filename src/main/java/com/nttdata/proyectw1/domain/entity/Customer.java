@@ -8,9 +8,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@Document("client")
-public class Client {
-    private String clientType;
+@Document("customer")
+public class Customer {
+    private String customerType;
     private String name;
     private String documentNumber;
     private List<Passive> passiveList;

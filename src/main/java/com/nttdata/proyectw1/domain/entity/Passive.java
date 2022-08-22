@@ -15,6 +15,6 @@ public class Passive {
     private boolean commission;
     private boolean movementLimit;
     private MovementTypeEnum movementType;
-    private List<Client> headline;
-    private List<Client> signature;
+    private List<Customer> headline;
+    private List<Customer> signature;
 }
