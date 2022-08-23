@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -34,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/getProducts")
-    public Flux<List<Product>> getProducts(){
+    public Flux<Product> getProducts(){
         return productService.getAllProducts();
     }
 

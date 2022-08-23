@@ -1,22 +1,23 @@
 package com.nttdata.proyectw1.domain.service;
 
 import com.nttdata.proyectw1.domain.entity.Customer;
+import com.nttdata.proyectw1.domain.entity.Product;
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 public interface ICustomerService {
 
-    Mono<ResponseEntity> createCustomer(Customer customer);
+    ResponseEntity<Mono> createCustomer(Customer customer);
 
-    Mono<ResponseEntity> updateCustomer(Customer customer, String documentNumber);
+    ResponseEntity<Mono> updateCustomer(Customer customer, String documentNumber);
 
-    Mono<ResponseEntity<Customer>> getCustomer(String documentNumber);
+    ResponseEntity<Mono<Customer>> getCustomer(String documentNumber);
 
-    Flux<List<Customer>> getAllCustomers();
+    Flux<Customer> getAllCustomers();
 
-    Mono<ResponseEntity> deleteCustomer(String documentNumber);
+    ResponseEntity<Mono> deleteCustomer(String documentNumber);
+
+    ResponseEntity<Mono> updateProductInCustomer(Product product, String documentNumber);
 
 }

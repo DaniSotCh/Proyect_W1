@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.Optional;
 @Slf4j
 @Service
@@ -57,9 +56,8 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public Flux<List<Product>> getAllProducts() {
-        List<Product> products = productRepository.findAll();
-        return Flux.just(products);
+    public Flux<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 
     @Override

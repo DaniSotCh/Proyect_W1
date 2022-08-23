@@ -5,8 +5,6 @@ import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 public interface IProductService {
     Mono<ResponseEntity> createProduct(Product product);
 
@@ -14,7 +12,7 @@ public interface IProductService {
 
     Mono<ResponseEntity<Product>> getProduct(String productId);
 
-    Flux<List<Product>> getAllProducts();
+    Flux<Product> getAllProducts();
 
     Mono<ResponseEntity> deleteProduct(String productId);
 }
