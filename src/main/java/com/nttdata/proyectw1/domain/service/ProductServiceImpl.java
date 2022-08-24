@@ -19,39 +19,21 @@ public class ProductServiceImpl implements IProductService{
     private IProductRepository productRepository;
 
     @Override
-    public ResponseEntity<Mono> createProduct(Product product) {
-        try{
-            return new ResponseEntity<Mono>(productRepository.insert(product), HttpStatus.CREATED);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Product> createProduct(Product product) {
+        return productRepository.insert(product);
     }
 
     @Override
-    public ResponseEntity<Mono> updateProduct(Product product, String productId) {
-        try{
-            Optional<Product> optionalProduct = productRepository.findByProductId(productId);
-            if(optionalProduct.isPresent()){
-                return new ResponseEntity<Mono>(productRepository.save(product), HttpStatus.CREATED);
-            }
-            return new ResponseEntity<Mono>(HttpStatus.NOT_FOUND);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Product> updateProduct(Product product, String productId) {
+        Mono<Product> response = productRepository.findByProductId(productId);
+        return response.flatMap(x ->{
+            return productRepository.save(product);
+        });
     }
 
     @Override
-    public ResponseEntity<Mono<Product>> getProduct(String productId) {
-        try{
-            Optional<Product> product = productRepository.findByProductId(productId);
-            if(product.isPresent()){
-                return new ResponseEntity<Mono<Product>>(Mono.just(product.get()),HttpStatus.OK);
-            }
-            return new ResponseEntity<Mono<Product>>(HttpStatus.NOT_FOUND);
-        }catch (Exception ex){
-            log.info(ex.getMessage());
-            return new ResponseEntity<Mono<Product>>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Product> getProduct(String productId) {
+        return productRepository.findByProductId(productId);
     }
 
     @Override
@@ -60,11 +42,7 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public ResponseEntity<Mono> deleteProduct(String productId) {
-        try{
-            return new ResponseEntity<Mono>(productRepository.deleteByProductId(productId), HttpStatus.OK);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Void> deleteProduct(String productId) {
+        return productRepository.deleteByProductId(productId);
     }
 }

@@ -8,6 +8,6 @@ import reactor.core.publisher.Mono;
 import java.util.Optional;
 @Repository
 public interface IProductRepository extends ReactiveMongoRepository<Product, String> {
-    Optional<Product> findByProductId(String productId);
+    Mono<Product> findByProductId(String productId);
     Mono<Void> deleteByProductId(String productId);
 }

@@ -14,17 +14,17 @@ public class ProductController {
     @Autowired
     IProductService productService;
     @PostMapping
-    public ResponseEntity<Mono> createProduct(@RequestBody Product product){
+    public Mono<Product> createProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
 
     @PutMapping("/{productId}")
-    public ResponseEntity<Mono> updateProduct(@RequestBody Product product,@PathVariable String productId){
+    public Mono<Product> updateProduct(@RequestBody Product product,@PathVariable String productId){
         return productService.updateProduct(product,productId);
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Mono<Product>> getProduct(@PathVariable String productId){
+    public Mono<Product> getProduct(@PathVariable String productId){
         return productService.getProduct(productId);
     }
 
@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public ResponseEntity<Mono> deleteProduct(@PathVariable String productId){
+    public Mono<Void> deleteProduct(@PathVariable String productId){
         return productService.deleteProduct(productId);
     }
 }
