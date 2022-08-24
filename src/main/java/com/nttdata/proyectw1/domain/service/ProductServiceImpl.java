@@ -19,39 +19,38 @@ public class ProductServiceImpl implements IProductService{
     private IProductRepository productRepository;
 
     @Override
-    public Mono<ResponseEntity> createProduct(Product product) {
+    public ResponseEntity<Mono> createProduct(Product product) {
         try{
-            productRepository.insert(product);
-            return Mono.just(ResponseEntity.status(HttpStatus.CREATED).build());
+            return new ResponseEntity<Mono>(productRepository.insert(product), HttpStatus.CREATED);
         }catch (Exception ex){
-            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
-    public Mono<ResponseEntity> updateProduct(Product product, String productId) {
+    public ResponseEntity<Mono> updateProduct(Product product, String productId) {
         try{
             Optional<Product> optionalProduct = productRepository.findByProductId(productId);
             if(optionalProduct.isPresent()){
-                productRepository.save(product);
-                return Mono.just(ResponseEntity.status(HttpStatus.CREATED).build());
+                return new ResponseEntity<Mono>(productRepository.save(product), HttpStatus.CREATED);
             }
-            return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+            return new ResponseEntity<Mono>(HttpStatus.NOT_FOUND);
         }catch (Exception ex){
-            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
-    public Mono<ResponseEntity<Product>> getProduct(String productId) {
+    public ResponseEntity<Mono<Product>> getProduct(String productId) {
         try{
             Optional<Product> product = productRepository.findByProductId(productId);
             if(product.isPresent()){
-                return Mono.just(ResponseEntity.ok(product.get()));
+                return new ResponseEntity<Mono<Product>>(Mono.just(product.get()),HttpStatus.OK);
             }
-            return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+            return new ResponseEntity<Mono<Product>>(HttpStatus.NOT_FOUND);
         }catch (Exception ex){
-            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+            log.info(ex.getMessage());
+            return new ResponseEntity<Mono<Product>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -61,12 +60,11 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public Mono<ResponseEntity> deleteProduct(String productId) {
+    public ResponseEntity<Mono> deleteProduct(String productId) {
         try{
-            productRepository.deleteByProductId(productId);
-            return Mono.just(ResponseEntity.status(HttpStatus.OK).build());
+            return new ResponseEntity<Mono>(productRepository.deleteByProductId(productId), HttpStatus.OK);
         }catch (Exception ex){
-            return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build());
+            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -14,21 +14,18 @@ public class ProductController {
     @Autowired
     IProductService productService;
     @PostMapping
-    public Mono<String> createProduct(@RequestBody Product product){
-        productService.createProduct(product);
-        return Mono.just("Successful Registration");
+    public ResponseEntity<Mono> createProduct(@RequestBody Product product){
+        return productService.createProduct(product);
     }
 
     @PutMapping("/{productId}")
-    public Mono<String> updateProduct(@RequestBody Product product,@PathVariable String productId){
-        productService.updateProduct(product,productId);
-        return Mono.just("Successful Update");
+    public ResponseEntity<Mono> updateProduct(@RequestBody Product product,@PathVariable String productId){
+        return productService.updateProduct(product,productId);
     }
 
     @GetMapping("/{productId}")
-    public Mono<ResponseEntity<Product>> getProduct(@PathVariable String productId){
-        Mono<ResponseEntity<Product>> response = productService.getProduct(productId);
-        return response;
+    public ResponseEntity<Mono<Product>> getProduct(@PathVariable String productId){
+        return productService.getProduct(productId);
     }
 
     @GetMapping("/getProducts")
@@ -37,8 +34,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public Mono<String> deleteProduct(@PathVariable String productId){
-        productService.deleteProduct(productId);
-        return Mono.just("Successful Delete");
+    public ResponseEntity<Mono> deleteProduct(@PathVariable String productId){
+        return productService.deleteProduct(productId);
     }
 }

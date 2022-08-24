@@ -6,13 +6,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IProductService {
-    Mono<ResponseEntity> createProduct(Product product);
+    ResponseEntity<Mono> createProduct(Product product);
 
-    Mono<ResponseEntity> updateProduct(Product product,String productId);
+    ResponseEntity<Mono> updateProduct(Product product,String productId);
 
-    Mono<ResponseEntity<Product>> getProduct(String productId);
+    ResponseEntity<Mono<Product>> getProduct(String productId);
 
     Flux<Product> getAllProducts();
 
-    Mono<ResponseEntity> deleteProduct(String productId);
+    ResponseEntity<Mono> deleteProduct(String productId);
 }
