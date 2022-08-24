@@ -10,4 +10,5 @@ public class Active {
     private ProductTypeEnum productType;
     private Integer activeNumber;
     private Double creditLimit;
+    private Double actualAmount;
 }

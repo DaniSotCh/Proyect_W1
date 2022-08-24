@@ -1,17 +1,24 @@
 package com.nttdata.proyectw1.domain.entity;
 
 import com.nttdata.proyectw1.domain.util.constant.MovementTypeEnum;
+import com.nttdata.proyectw1.domain.util.constant.ProductTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 
 @Getter
 @Setter
+@Document("bankAccount")
 public class BankAccount {
-    private Customer customer;
-    private Product product;
+    @Id
+    private String Id;
+    private String documentNumberCustomer;
+    private String accountNumber;
+    private ProductTypeEnum productType;
     private Double amount;
     private LocalDateTime date;
     private MovementTypeEnum movementType;

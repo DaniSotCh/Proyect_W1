@@ -13,6 +13,7 @@ public class Passive {
     private String accountNumber;
     private boolean commission;
     private boolean movementLimit;
+    private Double actualAmount;
     private List<Headline> headline;
     private List<Headline> signature;
 }
