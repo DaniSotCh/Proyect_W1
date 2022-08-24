@@ -1,18 +1,19 @@
 package com.nttdata.proyectw1.domain.service;
 
 
+import com.nttdata.proyectw1.domain.entity.Active;
 import com.nttdata.proyectw1.domain.entity.Customer;
+import com.nttdata.proyectw1.domain.entity.Passive;
 import com.nttdata.proyectw1.domain.entity.Product;
 import com.nttdata.proyectw1.domain.repository.ICustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.nttdata.proyectw1.domain.util.constant.ProductTypeEnum.*;
 
@@ -24,41 +25,19 @@ public class CustomerServiceImpl implements ICustomerService {
     private ICustomerRepository customerRepository;
 
     @Override
-    public ResponseEntity<Mono> createCustomer(Customer customer) {
-        try{
-            if(businessRules(customer, customer.getCustomerType())){
-                return new ResponseEntity<Mono>(customerRepository.insert(customer), HttpStatus.CREATED);
-            }
-            return new ResponseEntity<Mono>(HttpStatus.BAD_REQUEST);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Customer> createCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     @Override
-    public ResponseEntity<Mono> updateCustomer(Customer customer, String documentNumber) {
-        try{
-            Optional<Customer> optionalCustomer = customerRepository.findByDocumentNumber(documentNumber);
-            if(optionalCustomer.isPresent()){
-                return new ResponseEntity<Mono>(customerRepository.save(customer), HttpStatus.CREATED);
-            }
-            return new ResponseEntity<Mono>(HttpStatus.NOT_FOUND);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Customer> updateCustomer(Customer customer, String documentNumber) {
+        Mono<Customer> optionalCustomer = customerRepository.findByDocumentNumber(documentNumber);
+        return optionalCustomer.flatMap(x-> customerRepository.save(customer));
     }
 
     @Override
-    public ResponseEntity<Mono<Customer>> getCustomer(String documentNumber) {
-        try{
-            Optional<Customer> customer = customerRepository.findByDocumentNumber(documentNumber);
-            if(customer.isPresent()){
-                return new ResponseEntity<Mono<Customer>>(Mono.just(customer.get()),HttpStatus.OK);
-            }
-            return new ResponseEntity<Mono<Customer>>(HttpStatus.NOT_FOUND);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono<Customer>>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Customer> getCustomer(String documentNumber) {
+        return customerRepository.findByDocumentNumber(documentNumber);
     }
 
     @Override
@@ -67,32 +46,40 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public ResponseEntity<Mono> deleteCustomer(String documentNumber) {
-        try{
-            return new ResponseEntity<Mono>(customerRepository.deleteByDocumentNumber(documentNumber), HttpStatus.OK);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public Mono<Void> deleteCustomer(String documentNumber) {
+        return customerRepository.deleteByDocumentNumber(documentNumber);
     }
 
     @Override
-    public ResponseEntity<Mono> updateProductInCustomer(Product product, String documentNumber) {
-        try{
-            Optional<Customer> optionalCustomer = customerRepository.findByDocumentNumber(documentNumber);
-            if(optionalCustomer.isPresent()){
-                Customer updatedCustomer = optionalCustomer.get();
-                updatedCustomer.getPassiveList().add(product.getPassiveProduct());
-                updatedCustomer.getActiveList().add(product.getActiveProduct());
-
-                if(businessRules(updatedCustomer, updatedCustomer.getCustomerType())){
-                    return new ResponseEntity<Mono>(customerRepository.save(updatedCustomer), HttpStatus.CREATED);
+    public Mono<Customer> updateProductInCustomer(Product product, String documentNumber) {
+        Mono<Customer> optionalCustomer = customerRepository.findByDocumentNumber(documentNumber);
+        return optionalCustomer.flatMap(x->{
+            if(product.getPassiveProduct()!=null){
+                List<Passive> auxP;
+                if(x.getPassiveList()!=null){
+                    x.getPassiveList().add(product.getPassiveProduct());
+                }else{
+                    auxP=new ArrayList<>();
+                    auxP.add(product.getPassiveProduct());
+                    x.setPassiveList(auxP);
                 }
-                return new ResponseEntity<Mono>(HttpStatus.BAD_REQUEST);
+
             }
-            return new ResponseEntity<Mono>(HttpStatus.NOT_FOUND);
-        }catch (Exception ex){
-            return new ResponseEntity<Mono>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+            if(product.getActiveProduct()!=null){
+                List<Active> auxA;
+                if(x.getActiveList()!=null){
+                    x.getActiveList().add(product.getActiveProduct());
+                }else{
+                    auxA=new ArrayList<>();
+                    auxA.add(product.getActiveProduct());
+                    x.setActiveList(auxA);
+                }
+            }
+            if(businessRules(x,x.getCustomerType())){
+               return customerRepository.save(x);
+            }
+            return optionalCustomer;
+        });
     }
 
     private boolean businessRules(Customer customer, String customerType){

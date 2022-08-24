@@ -4,7 +4,6 @@ import com.nttdata.proyectw1.domain.entity.Customer;
 import com.nttdata.proyectw1.domain.entity.Product;
 import com.nttdata.proyectw1.domain.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -17,17 +16,17 @@ public class CustomerController {
     ICustomerService customerService;
 
     @PostMapping()
-    public ResponseEntity<Mono> createCustomer(@RequestBody Customer customer){
+    public Mono<Customer> createCustomer(@RequestBody Customer customer){
         return customerService.createCustomer(customer);
     }
 
     @PutMapping("/{documentNumber}")
-    public ResponseEntity<Mono> updateCustomer(@RequestBody Customer customer, @PathVariable(name = "documentNumber") String documentNumber){
+    public Mono<Customer> updateCustomer(@RequestBody Customer customer, @PathVariable(name = "documentNumber") String documentNumber){
         return customerService.updateCustomer(customer,documentNumber);
     }
 
     @GetMapping("/{documentNumber}")
-    public ResponseEntity<Mono<Customer>> getCustomer(@PathVariable(name = "documentNumber") String documentNumber){
+    public Mono<Customer> getCustomer(@PathVariable(name = "documentNumber") String documentNumber){
         return customerService.getCustomer(documentNumber);
     }
 
@@ -37,12 +36,12 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{documentNumber}")
-    public ResponseEntity<Mono> deleteCustomer(@PathVariable(name = "documentNumber") String documentNumber){
+    public Mono<Void> deleteCustomer(@PathVariable(name = "documentNumber") String documentNumber){
         return customerService.deleteCustomer(documentNumber);
     }
 
     @PutMapping("/addProduct/{documentNumber}")
-    public ResponseEntity<Mono> updateProductInCustomer(@RequestBody Product product, @PathVariable(name = "documentNumber") String documentNumber){
+    public Mono<Customer> updateProductInCustomer(@RequestBody Product product, @PathVariable(name = "documentNumber") String documentNumber){
         return customerService.updateProductInCustomer(product, documentNumber);
     }
 
