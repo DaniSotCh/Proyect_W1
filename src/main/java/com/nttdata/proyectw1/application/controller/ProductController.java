@@ -3,7 +3,6 @@ package com.nttdata.proyectw1.application.controller;
 import com.nttdata.proyectw1.domain.entity.Product;
 import com.nttdata.proyectw1.domain.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
