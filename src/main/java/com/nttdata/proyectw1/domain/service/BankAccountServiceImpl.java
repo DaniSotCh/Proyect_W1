@@ -1,9 +1,6 @@
 package com.nttdata.proyectw1.domain.service;
 
-import com.nttdata.proyectw1.domain.entity.Active;
-import com.nttdata.proyectw1.domain.entity.BankAccount;
-import com.nttdata.proyectw1.domain.entity.Customer;
-import com.nttdata.proyectw1.domain.entity.Passive;
+import com.nttdata.proyectw1.domain.entity.*;
 import com.nttdata.proyectw1.domain.repository.IBankAccountRepository;
 import com.nttdata.proyectw1.domain.repository.ICustomerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -19,27 +16,27 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class BankAccountServiceImpl implements IBankAccountService{
+public class BankAccountServiceImpl implements IBankAccountService {
     @Autowired
     private IBankAccountRepository bankAccountRepository;
     @Autowired
-    private ICustomerRepository customerRepository;
+    private ICustomerService customerService;
 
     @Override
     public Mono<BankAccount> createTransaction(BankAccount bankAccount) {
         Map<Object, Object> actualCustomer = actualAmountPerAccountNumber(bankAccount);
         Customer returnCustomer = (Customer) actualCustomer.get("auxCustomer");
         boolean increment = (boolean) actualCustomer.get("increment");
-        if(increment){
-            customerRepository.save(returnCustomer);
+        if (increment) {
+            customerService.updateCustomer(returnCustomer, bankAccount.getDocumentNumberCustomer());
             return bankAccountRepository.insert(bankAccount);
-        }else{
-         return Mono.just(new BankAccount());
+        } else {
+            return Mono.just(new BankAccount());
         }
     }
 
-    private Map<Object, Object> actualAmountPerAccountNumber(BankAccount bankAccount){
-        Mono<Customer> customerResponse = customerRepository.findByDocumentNumber(bankAccount.getDocumentNumberCustomer());
+    private Map<Object, Object> actualAmountPerAccountNumber(BankAccount bankAccount) {
+        Mono<Customer> customerResponse = customerService.getCustomer(bankAccount.getDocumentNumberCustomer());
         Map<Object, Object> objReturn = new HashMap<>();
 
         Double amountReturn = 0.00;
@@ -51,45 +48,45 @@ public class BankAccountServiceImpl implements IBankAccountService{
         Customer auxCustomer = new Customer();
         auxCustomer = customerResponse.toFuture().join();
 
-        if(bankAccount.getProductType().getType().equals("PAS")){
+        if (bankAccount.getProductType().getType().equals("PAS")) {
             auxPassive = customerResponse.map(Customer::getPassiveList).toFuture().join();
             auxPassive.stream().filter(passive -> passive.getAccountNumber().equals(bankAccount.getAccountNumber()));
             pasResp = auxPassive.get(0);
-            pasResp.setActualAmount(pasResp.getActualAmount()!=null?pasResp.getActualAmount():0.00);
-            switch (bankAccount.getMovementType()){
+            pasResp.setActualAmount(pasResp.getActualAmount() != null ? pasResp.getActualAmount() : 0.00);
+            switch (bankAccount.getMovementType()) {
                 case DEPOSIT:
-                    amountReturn = pasResp.getActualAmount()+bankAccount.getAmount();
+                    amountReturn = pasResp.getActualAmount() + bankAccount.getAmount();
                     break;
                 case WITHDRAWAL:
-                    amountReturn = pasResp.getActualAmount()-bankAccount.getAmount();
+                    amountReturn = pasResp.getActualAmount() - bankAccount.getAmount();
                     break;
             }
         }
-        if(bankAccount.getProductType().getType().equals("ACT")){
+        if (bankAccount.getProductType().getType().equals("ACT")) {
             auxActive = customerResponse.map(Customer::getActiveList).toFuture().join();
             auxActive.stream().filter(active -> active.getAccountNumber().equals(bankAccount.getAccountNumber()));
             actResp = auxActive.get(0);
-            switch (bankAccount.getMovementType()){
+            switch (bankAccount.getMovementType()) {
                 case DEPOSIT:
-                    amountReturn = actResp.getActualAmount()+bankAccount.getAmount();
+                    amountReturn = actResp.getActualAmount() + bankAccount.getAmount();
                     break;
                 case PAYMENT:
                     WITHDRAWAL:
-                    amountReturn = actResp.getCreditLimit()-bankAccount.getAmount();
+                    amountReturn = actResp.getCreditLimit() - bankAccount.getAmount();
                     break;
             }
         }
-        if(amountReturn<0){
+        if (amountReturn < 0) {
             objReturn.put("auxCustomer", auxCustomer);
             objReturn.put("increment", false);
             return objReturn;
-        }else{
-            if(auxPassive.size()>0) {
+        } else {
+            if (auxPassive.size() > 0) {
                 pasResp.setActualAmount(amountReturn);
                 auxPassive.set(0, pasResp);
                 auxCustomer.setPassiveList(auxPassive);
             }
-            if(auxActive.size()>0) {
+            if (auxActive.size() > 0) {
                 actResp.setActualAmount(amountReturn);
                 auxActive.set(0, actResp);
                 auxCustomer.setActiveList(auxActive);
@@ -101,12 +98,18 @@ public class BankAccountServiceImpl implements IBankAccountService{
     }
 
     @Override
-    public Flux<BankAccount> getAllProductsAmounts(String documentNumberCustomer) {
-        return null;
+    public Flux<ProductList> getAllProductsAmounts(String documentNumberCustomer) {
+        Mono<Customer> customerResponse = customerService.getCustomer(documentNumberCustomer);
+        Customer auxCustomer = customerResponse.toFuture().join();
+        ProductList response = new ProductList();
+        response.setPassiveList(auxCustomer.getPassiveList());
+        response.setActiveList(auxCustomer.getActiveList());
+
+        return Flux.just(response);
     }
 
     @Override
-    public Flux<BankAccount> getAllAmountsByProduct(String accountNumber, String documentNumberCustomer) {
-        return null;
+    public Flux<BankAccount> getAllAmountsByProduct(String accountNumber) {
+        return bankAccountRepository.findByAccountNumber(accountNumber);
     }
 }
