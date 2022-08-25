@@ -6,6 +6,7 @@ import com.nttdata.proyectw1.domain.entity.Customer;
 import com.nttdata.proyectw1.domain.entity.Passive;
 import com.nttdata.proyectw1.domain.entity.Product;
 import com.nttdata.proyectw1.domain.repository.ICustomerRepository;
+import com.nttdata.proyectw1.domain.util.constant.CustomerTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nttdata.proyectw1.domain.util.constant.CustomerTypeEnum.*;
 import static com.nttdata.proyectw1.domain.util.constant.ProductTypeEnum.*;
 
 @Slf4j
@@ -82,8 +84,8 @@ public class CustomerServiceImpl implements ICustomerService {
         });
     }
 
-    private boolean businessRules(Customer customer, String customerType){
-        if(customerType.equals("P")){
+    private boolean businessRules(Customer customer, CustomerTypeEnum customerType){
+        if(customerType.equals(PERSONAL)){
             if(customer.getPassiveList()!=null){
                 if(customer.getPassiveList().size()<4){
                     long countP1 = customer.getPassiveList().stream()
@@ -113,6 +115,15 @@ public class CustomerServiceImpl implements ICustomerService {
                         .count();
 
                 return countA1 <= 1 && countA2 <= 1;
+            }
+        }else if(customerType.equals(VIP)||customerType.equals(PYME)){
+            if (customer.getActiveList() != null) {
+                long countA1 = customer.getActiveList().stream()
+                        .filter(p -> p.getProductType().equals(CREDIT_CARD))
+                        .count();
+                return countA1 >= 1;
+            }else{
+                return false;
             }
         }else{
             if(customer.getPassiveList()!=null){

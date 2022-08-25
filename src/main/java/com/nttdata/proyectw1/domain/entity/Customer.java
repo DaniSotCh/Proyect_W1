@@ -1,5 +1,6 @@
 package com.nttdata.proyectw1.domain.entity;
 
+import com.nttdata.proyectw1.domain.util.constant.CustomerTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Customer {
     @Id
     private String documentNumber;
-    private String customerType;
+    private CustomerTypeEnum customerType;
     private String name;
     private List<Passive> passiveList;
     private List<Active> activeList;
