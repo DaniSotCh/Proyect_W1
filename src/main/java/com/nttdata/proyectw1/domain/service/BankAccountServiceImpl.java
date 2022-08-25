@@ -28,7 +28,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
         Customer returnCustomer = (Customer) actualCustomer.get("auxCustomer");
         boolean increment = (boolean) actualCustomer.get("increment");
         if (increment) {
-            customerService.updateCustomer(returnCustomer, bankAccount.getDocumentNumberCustomer());
+            customerService.updateCustomer(returnCustomer, bankAccount.getDocumentNumberCustomer()).subscribe();
             return bankAccountRepository.insert(bankAccount);
         } else {
             return Mono.just(new BankAccount());
