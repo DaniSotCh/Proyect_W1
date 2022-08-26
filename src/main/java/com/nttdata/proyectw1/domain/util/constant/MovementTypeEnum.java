@@ -11,5 +11,5 @@ public enum MovementTypeEnum {
     WITHDRAWAL("WIT"),
     DEPOSIT("DEP");
 
-    private String code;
+    private final String code;
 }

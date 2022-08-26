@@ -14,7 +14,7 @@ public enum ProductTypeEnum {
     BUSINESS_CREDIT("BCR","ACT"),
     CREDIT_CARD("CRC","ACT");
 
-    private String code;
-    private String type;
+    private final String code;
+    private final String type;
 
 }

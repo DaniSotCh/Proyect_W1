@@ -2,7 +2,6 @@ package com.nttdata.proyectw1.domain.service;
 
 import com.nttdata.proyectw1.domain.entity.*;
 import com.nttdata.proyectw1.domain.repository.IBankAccountRepository;
-import com.nttdata.proyectw1.domain.repository.ICustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,6 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static java.util.stream.Collectors.toList;
 
 @Slf4j
 @Service
@@ -24,7 +22,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
 
     @Override
     public Mono<BankAccount> createTransaction(BankAccount bankAccount) {
-        Map<Object, Object> actualCustomer = actualAmountPerAccountNumber(bankAccount);
+        Map<String, Object> actualCustomer = actualAmountPerAccountNumber(bankAccount);
         Customer returnCustomer = (Customer) actualCustomer.get("auxCustomer");
         boolean increment = (boolean) actualCustomer.get("increment");
         if (increment) {
@@ -54,9 +52,9 @@ public class BankAccountServiceImpl implements IBankAccountService {
         return bankAccountRepository.findByAccountNumber(accountNumber);
     }
 
-    private Map<Object, Object> actualAmountPerAccountNumber(BankAccount bankAccount) {
+    private Map<String, Object> actualAmountPerAccountNumber(BankAccount bankAccount) {
         Mono<Customer> customerResponse = customerService.getCustomer(bankAccount.getDocumentNumberCustomer());
-        Map<Object, Object> objReturn = new HashMap<>();
+        Map<String, Object> objReturn = new HashMap<>();
 
         Double amountReturn = 0.00;
         List<Passive> auxPassive = new ArrayList<>();

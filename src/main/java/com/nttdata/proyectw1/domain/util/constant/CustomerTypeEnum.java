@@ -12,5 +12,5 @@ public enum CustomerTypeEnum {
     BUSINESS("BU"),
     PYME("PY");
 
-    private String code;
+    private final String code;
 }
