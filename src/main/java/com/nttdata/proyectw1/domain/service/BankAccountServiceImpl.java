@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 @Slf4j
 @Service
@@ -28,11 +28,30 @@ public class BankAccountServiceImpl implements IBankAccountService {
         Customer returnCustomer = (Customer) actualCustomer.get("auxCustomer");
         boolean increment = (boolean) actualCustomer.get("increment");
         if (increment) {
+            bankAccount.setDate(LocalDateTime.now());
+            bankAccount.setCommissionAmount((Double) actualCustomer.get("commissionAmount"));
             customerService.updateCustomer(returnCustomer, bankAccount.getDocumentNumberCustomer()).subscribe();
+
             return bankAccountRepository.insert(bankAccount);
         } else {
             return Mono.just(new BankAccount());
         }
+    }
+
+    @Override
+    public Flux<ProductList> getAllProductsAmounts(String documentNumberCustomer) {
+        Mono<Customer> customerResponse = customerService.getCustomer(documentNumberCustomer);
+        Customer auxCustomer = customerResponse.toFuture().join();
+        ProductList response = new ProductList();
+        response.setPassiveList(auxCustomer.getPassiveList());
+        response.setActiveList(auxCustomer.getActiveList());
+
+        return Flux.just(response);
+    }
+
+    @Override
+    public Flux<BankAccount> getAllAmountsByProduct(String accountNumber) {
+        return bankAccountRepository.findByAccountNumber(accountNumber);
     }
 
     private Map<Object, Object> actualAmountPerAccountNumber(BankAccount bankAccount) {
@@ -44,23 +63,53 @@ public class BankAccountServiceImpl implements IBankAccountService {
         Passive pasResp = new Passive();
         List<Active> auxActive = new ArrayList<>();
         Active actResp = new Active();
+        double comissionAmount=0.0;
+        boolean comission = false;
 
         Customer auxCustomer = new Customer();
         auxCustomer = customerResponse.toFuture().join();
 
         if (bankAccount.getProductType().getType().equals("PAS")) {
+
             auxPassive = customerResponse.map(Customer::getPassiveList).toFuture().join();
             auxPassive.stream().filter(passive -> passive.getAccountNumber().equals(bankAccount.getAccountNumber()));
             pasResp = auxPassive.get(0);
             pasResp.setActualAmount(pasResp.getActualAmount() != null ? pasResp.getActualAmount() : 0.00);
-            switch (bankAccount.getMovementType()) {
-                case DEPOSIT:
-                    amountReturn = pasResp.getActualAmount() + bankAccount.getAmount();
-                    break;
-                case WITHDRAWAL:
-                    amountReturn = pasResp.getActualAmount() - bankAccount.getAmount();
-                    break;
+
+            comission=pasResp.isCommission();
+            List<BankAccount> lista=new ArrayList<>();
+
+            int count = bankAccountRepository.findByAccountNumber(pasResp.getAccountNumber()).collectList().share().toFuture().join().size()+1;
+
+            if(count>pasResp.getMovementLimit()){
+                comission = true;
+                comissionAmount = pasResp.getCommissionAmount();
+            }else if(count==pasResp.getMovementLimit()){
+                comission = true;
             }
+
+            if(pasResp.isCommission()){
+                switch (bankAccount.getMovementType()) {
+                    case DEPOSIT:
+                        amountReturn = pasResp.getActualAmount() + bankAccount.getAmount() - comissionAmount;
+                        break;
+                    case WITHDRAWAL:
+                        amountReturn = pasResp.getActualAmount() - bankAccount.getAmount() - comissionAmount;
+                        break;
+                }
+            }else{
+                switch (bankAccount.getMovementType()) {
+                    case DEPOSIT:
+                        amountReturn = pasResp.getActualAmount() + bankAccount.getAmount();
+                        break;
+                    case WITHDRAWAL:
+                        amountReturn = pasResp.getActualAmount() - bankAccount.getAmount();
+                        break;
+                }
+            }
+
+
+
         }
         if (bankAccount.getProductType().getType().equals("ACT")) {
             auxActive = customerResponse.map(Customer::getActiveList).toFuture().join();
@@ -83,6 +132,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
         } else {
             if (auxPassive.size() > 0) {
                 pasResp.setActualAmount(amountReturn);
+                pasResp.setCommission(comission);
                 auxPassive.set(0, pasResp);
                 auxCustomer.setPassiveList(auxPassive);
             }
@@ -93,23 +143,9 @@ public class BankAccountServiceImpl implements IBankAccountService {
             }
             objReturn.put("auxCustomer", auxCustomer);
             objReturn.put("increment", true);
+            objReturn.put("commissionAmount",comissionAmount);
             return objReturn;
         }
     }
 
-    @Override
-    public Flux<ProductList> getAllProductsAmounts(String documentNumberCustomer) {
-        Mono<Customer> customerResponse = customerService.getCustomer(documentNumberCustomer);
-        Customer auxCustomer = customerResponse.toFuture().join();
-        ProductList response = new ProductList();
-        response.setPassiveList(auxCustomer.getPassiveList());
-        response.setActiveList(auxCustomer.getActiveList());
-
-        return Flux.just(response);
-    }
-
-    @Override
-    public Flux<BankAccount> getAllAmountsByProduct(String accountNumber) {
-        return bankAccountRepository.findByAccountNumber(accountNumber);
-    }
 }

@@ -22,4 +22,5 @@ public class BankAccount {
     private Double amount;
     private LocalDateTime date;
     private MovementTypeEnum movementType;
+    private Double commissionAmount;
 }
