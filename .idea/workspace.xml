@@ -4,26 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a30c231-9255-41a6-b19d-93733f289ef1" name="Changes" comment="Added microservices" />
+    <list default="true" id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/Proyectw1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/Projectw1Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/application/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/application/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/application/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/Active.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/Active.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/BankAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/BankAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/Headline.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/Headline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/Passive.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/Passive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/entity/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/ProductList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/repository/IBankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/repository/IBankAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/repository/ICustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/repository/ICustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/repository/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/IBankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IBankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/util/constant/CustomerTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/util/constant/CustomerTypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/util/constant/MovementTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/util/constant/MovementTypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/proyectw1/domain/util/constant/ProductTypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/util/constant/ProductTypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/test/java/com/nttdata/proyectw1/Proyectw1ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/test/java/com/nttdata/projectw1/Proyectw1ApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/src/main/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/src/main/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectConfigServer/src/test/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/src/test/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/src/main/java/com/nttdata/proyectw2/Proyectw2Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/Projectw2Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proyectw2/src/test/java/com/nttdata/proyectw2/Proyectw2ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/test/java/com/nttdata/projectw2/Proyectw2ApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -36,156 +68,31 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2Da1gbceRMxmDzxIeq82tQb6uUg" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2DueoZRj0ToaShDzSyq5pQ0Uzr7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dsotochu/Downloads/Bootcamp/Semana 2/BC32 Fuentes Arquitectura de MS&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "C:/Users/lmendivi/Documents/Apuntes/Bootcamp/Workspace/Proyect_W1/projectConfigServer",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="Proyectw1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.nttdata.proyectw1.Proyectw1Application" />
-      <module name="proyectw1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.nttdata.proyectw1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Proyectw1Application" />
-      </list>
-    </recent_temporary>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6a30c231-9255-41a6-b19d-93733f289ef1" name="Changes" comment="" />
-      <created>1660922496023</created>
+      <changelist id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="" />
+      <created>1661553571652</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1660922496023</updated>
+      <updated>1661553571652</updated>
     </task>
-    <task id="LOCAL-00001" summary="Added entities class">
-      <created>1660927736114</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1660927736114</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added Client Repository">
-      <created>1660940677588</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1660940677588</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Updated entities">
-      <created>1660946201566</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1660946201566</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Updated entities">
-      <created>1660946245453</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1660946245453</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add ProductController">
-      <created>1661194904801</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1661194904801</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Implementing ProductService and Repository">
-      <created>1661197140995</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1661197140995</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Updated Products Implements">
-      <created>1661208392276</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1661208392276</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added Headline Class and modify Products implement">
-      <created>1661308224907</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1661308224907</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Updated Products implements">
-      <created>1661360244341</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1661360244341</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Updated Products implements">
-      <created>1661360373810</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1661360373810</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Implements BankAccount">
-      <created>1661370916482</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1661370916482</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added logic CreateTransaction">
-      <created>1661378331161</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1661378331161</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Added transaction implements">
-      <created>1661380089686</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1661380089686</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Updated call customerService in BankAccountService">
-      <created>1661463326092</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1661463326092</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Added microservices">
-      <created>1661549585250</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1661549585250</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -193,48 +100,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="develop" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added entities class" />
-    <MESSAGE value="Added Client Repository" />
-    <MESSAGE value="Updated entities" />
-    <MESSAGE value="Add ProductController" />
-    <MESSAGE value="Implementing ProductService and Repository" />
-    <MESSAGE value="Updated Products Implements" />
-    <MESSAGE value="Added Headline Class and modify Products implement" />
-    <MESSAGE value="Updated Products implements" />
-    <MESSAGE value="Implements BankAccount" />
-    <MESSAGE value="Added logic CreateTransaction" />
-    <MESSAGE value="Added transaction implements" />
-    <MESSAGE value="Updated call customerService in BankAccountService" />
-    <MESSAGE value="Added microservices" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added microservices" />
-  </component>
-  <component name="XDebuggerManager">
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="reactor.core.publisher.FluxUsingWhen" memberName="asyncError" />
-        <PinnedItemInfo parentTag="reactor.core.publisher.FluxUsingWhen" memberName="asyncComplete" />
-        <PinnedItemInfo parentTag="org.springframework.aop.framework.JdkDynamicAopProxy" memberName="proxiedInterfaces" />
-        <PinnedItemInfo parentTag="reactor.core.publisher.MonoSupplier" memberName="supplier" />
-      </pinned-members>
-    </pin-to-top-manager>
   </component>
 </project>
