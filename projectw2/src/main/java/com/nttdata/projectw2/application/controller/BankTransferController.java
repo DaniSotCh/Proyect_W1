@@ -18,7 +18,7 @@ public class BankTransferController {
 
     @PostMapping
     public Mono<BankTransfer> bankTransfer(@RequestBody BankTransfer bankTransfer){
-        return null;
+        return bankTransferService.bankTransfer(bankTransfer);
     }
 
 }
