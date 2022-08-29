@@ -1,6 +1,7 @@
 package com.nttdata.projectw1.application.controller;
 
 import com.nttdata.projectw1.domain.entity.BankAccount;
+import com.nttdata.projectw1.domain.entity.Passive;
 import com.nttdata.projectw1.domain.entity.ProductList;
 import com.nttdata.projectw1.domain.service.IBankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,10 @@ public class BankAccountController {
     public Flux<ProductList> getAllProductsAmounts(@PathVariable String documentNumberCustomer){
         return bankAccountService.getAllProductsAmounts(documentNumberCustomer);
     }
-
+    @GetMapping("/getProduct/{accountNumber}")
+    public Mono<Passive> getProductByAccountNumber(@PathVariable String accountNumber){
+        return bankAccountService.getProductByAccountNumber(accountNumber);
+    }
     @GetMapping("/getAllAmounts/{accountNumber}")
     public Flux<BankAccount> getAllAmountsByProduct(@PathVariable String accountNumber){
         return bankAccountService.getAllAmountsByProduct(accountNumber);
