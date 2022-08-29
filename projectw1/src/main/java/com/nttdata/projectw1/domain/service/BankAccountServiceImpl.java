@@ -57,13 +57,12 @@ public class BankAccountServiceImpl implements IBankAccountService {
     @Override
     public Mono<Passive> getProductByAccountNumber(String accountNumber) {
         Flux<Customer> customerResponse = customerService.getAllCustomers();
-        List<List<Passive>> auxPassive = new ArrayList<>();
+        List<Passive> passiveList = new ArrayList<>();
         Passive pasResp = new Passive();
-        List<List<Passive>> pass2;
-        auxPassive = customerResponse.map(Customer::getPassiveList).collectList().share().toFuture().join();
-        pass2 = auxPassive.stream().filter(x-> x.stream().filter(y-> y.getAccountNumber().equals(accountNumber)).isParallel()).collect(Collectors.toList());
-        //auxPassive.stream().filter(passive -> passive.);
-        pasResp = auxPassive.get(0).get(0);
+        List<Passive> auxPassive;
+        passiveList = customerResponse.map(Customer::getPassiveList).collectList().share().toFuture().join().stream().flatMap(x -> x.stream()).collect(Collectors.toList());
+        auxPassive = passiveList.stream().filter(x->x.getAccountNumber().equals(accountNumber)).collect(Collectors.toList());
+        pasResp = auxPassive.get(0);
         return Mono.just(pasResp);
     }
 
