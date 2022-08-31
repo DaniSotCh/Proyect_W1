@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/entity/PassiveResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IBankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IBankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Passive.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Passive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/BankTransferServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/BankTransferServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +67,7 @@
       <recent name="com.nttdata.projectw2.util.constant" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Projectw1Application">
+  <component name="RunManager" selected="Application.Projectw2Application">
     <configuration name="Projectw1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.nttdata.projectw1.Projectw1Application" />
       <module name="projectw1" />
@@ -97,8 +96,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Projectw1Application" />
         <item itemvalue="Application.Projectw2Application" />
+        <item itemvalue="Application.Projectw1Application" />
       </list>
     </recent_temporary>
   </component>
@@ -123,21 +122,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/BankTransferServiceImpl.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

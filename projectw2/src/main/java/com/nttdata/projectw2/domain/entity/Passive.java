@@ -9,6 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 public class Passive {
+
+    private String documentNumberCustomer;
     private ProductTypeEnum productType;
     private String accountNumber;
     private boolean commission;
