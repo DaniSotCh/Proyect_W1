@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/application/controller/ReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Active.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Report.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/IReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/util/constant/CustomerTypeEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Passive.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Passive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/BankTransferServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/BankTransferServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +42,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2DueoZRj0ToaShDzSyq5pQ0Uzr7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -63,6 +71,7 @@
       <recent name="C:\Users\lmendivi\Documents\Apuntes\Bootcamp\Workspace\Proyect_W1\projectw2\src\main\java\com\nttdata\projectw2\domain\entity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.nttdata.projectw2.domain.util.constant" />
       <recent name="com.nttdata.projectw2.domain.entity" />
       <recent name="com.nttdata.projectw2.util.constant" />
     </key>
@@ -122,5 +131,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
