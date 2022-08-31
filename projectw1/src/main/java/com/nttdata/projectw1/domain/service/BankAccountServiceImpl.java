@@ -55,14 +55,25 @@ public class BankAccountServiceImpl implements IBankAccountService {
     }
 
     @Override
-    public Mono<Passive> getProductByAccountNumber(String accountNumber) {
+    public Mono<PassiveResponse> getProductByAccountNumber(String accountNumber) {
         Flux<Customer> customerResponse = customerService.getAllCustomers();
-        List<Passive> passiveList = new ArrayList<>();
-        Passive pasResp = new Passive();
-        List<Passive> auxPassive;
-        passiveList = customerResponse.map(Customer::getPassiveList).collectList().share().toFuture().join().stream().flatMap(x -> x.stream()).collect(Collectors.toList());
-        auxPassive = passiveList.stream().filter(x->x.getAccountNumber().equals(accountNumber)).collect(Collectors.toList());
-        pasResp = auxPassive.get(0);
+        PassiveResponse pasResp = new PassiveResponse();
+        List<Customer> auxCustomer = new ArrayList<>();
+
+        auxCustomer = customerResponse.collectList().share().toFuture().join().stream().filter(x->x.getPassiveList()
+                .stream().filter(y->y.getAccountNumber().equals(accountNumber)).collect(Collectors.toList()).size()>0).collect(Collectors.toList());
+
+        pasResp.setDocumentNumberCustomer(auxCustomer.get(0).getDocumentNumber());
+        pasResp.setProductType(auxCustomer.get(0).getPassiveList().get(0).getProductType());
+        pasResp.setAccountNumber(auxCustomer.get(0).getPassiveList().get(0).getAccountNumber());
+        pasResp.setCommission(auxCustomer.get(0).getPassiveList().get(0).isCommission());
+        pasResp.setCommissionAmount(auxCustomer.get(0).getPassiveList().get(0).getCommissionAmount());
+        pasResp.setMovementLimit(auxCustomer.get(0).getPassiveList().get(0).getMovementLimit());
+        pasResp.setActualAmount(auxCustomer.get(0).getPassiveList().get(0).getActualAmount());
+        pasResp.setAverageMinAmount(auxCustomer.get(0).getPassiveList().get(0).getAverageMinAmount());
+        pasResp.setHeadline(auxCustomer.get(0).getPassiveList().get(0).getHeadline());
+        pasResp.setSignature(auxCustomer.get(0).getPassiveList().get(0).getSignature());
+
         return Mono.just(pasResp);
     }
 
