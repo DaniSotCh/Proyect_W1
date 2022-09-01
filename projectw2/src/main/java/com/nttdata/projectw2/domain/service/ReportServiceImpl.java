@@ -29,52 +29,54 @@ public class ReportServiceImpl implements IReportService {
 
         //2. getAllAmounts per accountNumber
         //  -BankAccountList
-        System.out.println("-------------ENTRA1--------------");
         Mono<BankAccount> passiveTransfer = null;
 
         List<Flux<BankAccount>> filterBA = new ArrayList<>();
-//        Map<String,Object> mapResult= new HashMap<>();
 
-        customerMono.subscribe(x -> {
+        customerMono.subscribe(v -> {
             Mono<BankAccount> response = null;
-            System.out.println("-------------ENTRA2--------------");
-//            mapResult.put("documentNumber",x.getDocumentNumber());
-            if(x.getPassiveList().size()>0){
-                for (Passive y : x.getPassiveList()) {
-//                    mapResult.put("accountNumber",y.getAccountNumber());
-                    String accountNumber = y.getAccountNumber();
+            System.out.println("-------------ENTRA2 CustomerMono Subscribe--------------");
+            if(v.getPassiveList().size()>0){
+                for (Passive w : v.getPassiveList()) {
+                    String accountNumber = w.getAccountNumber();
+                    System.out.println("AccountNumberPassive: " + accountNumber);
                     Flux<BankAccount> resp2 = this.webClient.get()
                             .uri("/bankAccount/getAllAmounts/{accountNumber}", accountNumber)
                             .retrieve()
                             .bodyToFlux(BankAccount.class);
-                    resp2.subscribe(z->{
-//                        mapResult.put("z",z.toString());
-                        System.out.println("BankAccount passive--: "+z.getId());
+                    System.out.println("-------------PASSIVE BEFORE RESP2.SUBSCRIBE--------------");
+                    resp2.subscribe(x->{
+                        System.out.println("BankAccount passive--: " + x.getDocumentNumberCustomer());
+                        System.out.println("BankAccount passive--: " + x.getAccountNumber());
+                        System.out.println("BankAccount passive--: " + x.getId());
+                        System.out.println("BankAccount passive--: " + x.getCommissionAmount());
+                        System.out.println("BankAccount passive--: " + x.getAmount());
+                        System.out.println("-------------");
                     });
-                    System.out.println("-------------FILTRA PASSIVE--------------");
                     filterBA.add(resp2);
                 }
             }
 
-            if(x.getActiveList().size()>0) {
-                for (Active z : x.getActiveList()) {
-                    String accountNumber2 = z.getAccountNumber();
+            if(v.getActiveList().size()>0) {
+                for (Active w : v.getActiveList()) {
+                    String accountNumber2 = w.getAccountNumber();
                     Flux<BankAccount> resp3 = this.webClient.get()
                             .uri("/bankAccount/getAllAmounts/{accountNumber2}", accountNumber2)
                             .retrieve()
                             .bodyToFlux(BankAccount.class);
-                    resp3.subscribe(w -> {
-                        System.out.println("BankAccount active--: " + w.getId());
+                    System.out.println("-------------ACTIVE BEFORE RESP3.SUBSCRIBE--------------");
+                    resp3.subscribe(x->{
+                        System.out.println("BankAccount active--: " + x.getDocumentNumberCustomer());
+                        System.out.println("BankAccount active--: " + x.getAccountNumber());
+                        System.out.println("BankAccount active--: " + x.getId());
                     });
+
                     System.out.println("-------------FILTRA ACTIVE--------------");
                     filterBA.add(resp3);
                 }
             }
-//            System.out.println("mapResult1: "+mapResult.get("documentNumber"));
 
         });
-
-//        System.out.println("mapResult2: "+mapResult.get("documentNumber"));
 
         Report response = new Report();
 
