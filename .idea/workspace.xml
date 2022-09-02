@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectConfigServer/src/main/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/src/main/java/com/nttdata/projectConfigServer/ProjectConfigServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectConfigServer/src/test/java/com/nttdata/proyectConfigServer/ProyectConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectConfigServer/src/test/java/com/nttdata/projectConfigServer/ProyectConfigServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/application/controller/BankTransferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/application/controller/BankTransferController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +40,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2DueoZRj0ToaShDzSyq5pQ0Uzr7" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -42,17 +51,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lmendivi/Documents/Apuntes/Bootcamp/Workspace/Proyect_W1/projectw2/src/main/java/com/nttdata/projectw2/domain/util/constant&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "C:/Users/lmendivi/Documents/Apuntes/Bootcamp/Workspace/Proyect_W1/projectw2/src/main/java/com/nttdata/projectw2/domain/util/constant",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.nttdata.projectw2.domain.entity" />
@@ -132,16 +142,6 @@
           <url>file://$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java</url>
           <line>35</line>
           <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

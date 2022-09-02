@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
 @Slf4j
 @Service
 public class ProductServiceImpl implements IProductService{
@@ -24,9 +23,7 @@ public class ProductServiceImpl implements IProductService{
     @Override
     public Mono<Product> updateProduct(Product product, String productId) {
         Mono<Product> response = productRepository.findByProductId(productId);
-        return response.flatMap(x ->{
-            return productRepository.save(product);
-        });
+        return response.flatMap(x ->productRepository.save(product));
     }
 
     @Override

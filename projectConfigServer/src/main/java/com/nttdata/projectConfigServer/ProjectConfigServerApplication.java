@@ -1,13 +1,13 @@
-package com.nttdata.proyectConfigServer;
+package com.nttdata.projectConfigServer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProyectConfigServerApplication {
+public class ProjectConfigServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProyectConfigServerApplication.class, args);
+		SpringApplication.run(ProjectConfigServerApplication.class, args);
 	}
 
 }

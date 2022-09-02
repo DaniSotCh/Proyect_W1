@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,10 +28,9 @@ public class ReportServiceImpl implements IReportService {
                 .bodyToFlux(BankAccount.class);
 
         return respBankAccountCustomer.collectList().flatMap(x -> {
-            Report reporte = new Report();
-            reporte.setReportAverage(calculateSum(x));
-            Mono<Report> res = Mono.just(reporte);
-            return res;
+            Report responseReport = new Report();
+            responseReport.setReportAverage(calculateSum(x));
+            return Mono.just(responseReport);
         });
 
     }
@@ -46,10 +44,9 @@ public class ReportServiceImpl implements IReportService {
                 .bodyToFlux(BankAccount.class);
 
         return respBankAccountCustomer.collectList().flatMap(x -> {
-            Report reporte = new Report();
-            reporte.setReportAverage(calculateCommission(x, amountMonth));
-            Mono<Report> res = Mono.just(reporte);
-            return res;
+            Report responseReport = new Report();
+            responseReport.setReportAverage(calculateCommission(x, amountMonth));
+            return Mono.just(responseReport);
         });
     }
 
@@ -60,17 +57,17 @@ public class ReportServiceImpl implements IReportService {
                 dateNow.minusMonths(Long.parseLong(amountMonth)).compareTo(m.getDate()) <= 0
         ).collect(Collectors.toList());
 
-        Map<String, Object> mapeo = new HashMap<>();
+        Map<String, Object> obtainMap = new HashMap<>();
         int i = 0;
         for (BankAccount y : x) {
             if (y.getCommissionAmount() != null) {
                 i++;
-                mapeo.put("id" + i, y.getId());
-                mapeo.put("CommisionByProduct" + i, y.getCommissionAmount());
+                obtainMap.put("id" + i, y.getId());
+                obtainMap.put("commissionByProduct" + i, y.getCommissionAmount());
             }
         }
 
-        return mapeo;
+        return obtainMap;
     }
 
     private Map<String, Object> calculateSum(List<BankAccount> x) {
@@ -87,11 +84,11 @@ public class ReportServiceImpl implements IReportService {
         double total = 0;
         double commission = 0;
 
-        Map<String, Object> mapeo = new HashMap<>();
+        Map<String, Object> obtainMap = new HashMap<>();
 
 
         for (int i = 0; i < unique.length; i++) {
-            mapeo.put("accountNumber" + i, unique[i]);
+            obtainMap.put("accountNumber" + i, unique[i]);
 
             for (BankAccount y : x) {
 
@@ -103,12 +100,12 @@ public class ReportServiceImpl implements IReportService {
             }
 
             total = Math.round(((total - commission) / daysInMonth) * 100.0) / 100.0;
-            mapeo.put("AveragePerDay" + i, total);
+            obtainMap.put("AveragePerDay" + i, total);
             total = 0;
             commission = 0;
         }
 
-        return mapeo;
+        return obtainMap;
     }
 
 }

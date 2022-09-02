@@ -57,9 +57,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
     public Mono<PassiveResponse> getProductByAccountNumber(String accountNumber) {
         Flux<Customer> customerResponse = customerService.getAllCustomers();
         PassiveResponse pasResp = new PassiveResponse();
-        List<Customer> auxCustomer = new ArrayList<>();
-
-        auxCustomer = customerResponse.collectList().share().toFuture().join().stream().filter(x->x.getPassiveList()
+        List<Customer> auxCustomer = customerResponse.collectList().share().toFuture().join().stream().filter(x->x.getPassiveList()
                 .stream().filter(y->y.getAccountNumber().equals(accountNumber)).collect(Collectors.toList()).size()>0).collect(Collectors.toList());
 
         pasResp.setDocumentNumberCustomer(auxCustomer.get(0).getDocumentNumber());
@@ -85,16 +83,15 @@ public class BankAccountServiceImpl implements IBankAccountService {
         Mono<Customer> customerResponse = customerService.getCustomer(bankAccount.getDocumentNumberCustomer());
         Map<String, Object> objReturn = new HashMap<>();
 
-        Double amountReturn = 0.00;
+        double amountReturn = 0.00;
         List<Passive> auxPassive = new ArrayList<>();
         Passive pasResp = new Passive();
         List<Active> auxActive = new ArrayList<>();
         Active actResp = new Active();
-        double comissionAmount=0.0;
-        boolean comission = false;
+        double commissionAmount=0.0;
+        boolean commission = false;
 
-        Customer auxCustomer = new Customer();
-        auxCustomer = customerResponse.toFuture().join();
+        Customer auxCustomer = customerResponse.toFuture().join();
 
         if (bankAccount.getProductType().getType().equals("PAS")) {
 
@@ -103,25 +100,24 @@ public class BankAccountServiceImpl implements IBankAccountService {
             pasResp = auxPassive.get(0);
             pasResp.setActualAmount(pasResp.getActualAmount() != null ? pasResp.getActualAmount() : 0.00);
 
-            comission=pasResp.isCommission();
-            List<BankAccount> lista=new ArrayList<>();
+            commission=pasResp.isCommission();
 
             int count = bankAccountRepository.findByAccountNumber(pasResp.getAccountNumber()).collectList().share().toFuture().join().size()+1;
 
             if(count>pasResp.getMovementLimit()){
-                comission = true;
-                comissionAmount = pasResp.getCommissionAmount();
+                commission = true;
+                commissionAmount = pasResp.getCommissionAmount();
             }else if(count==pasResp.getMovementLimit()){
-                comission = true;
+                commission = true;
             }
 
             if(pasResp.isCommission()){
                 switch (bankAccount.getMovementType()) {
                     case DEPOSIT:
-                        amountReturn = pasResp.getActualAmount() + bankAccount.getAmount() - comissionAmount;
+                        amountReturn = pasResp.getActualAmount() + bankAccount.getAmount() - commissionAmount;
                         break;
                     case WITHDRAWAL:
-                        amountReturn = pasResp.getActualAmount() - bankAccount.getAmount() - comissionAmount;
+                        amountReturn = pasResp.getActualAmount() - bankAccount.getAmount() - commissionAmount;
                         break;
                 }
             }else{
@@ -152,14 +148,13 @@ public class BankAccountServiceImpl implements IBankAccountService {
                     break;
             }
         }
+
         if (amountReturn < 0) {
-            objReturn.put("auxCustomer", auxCustomer);
             objReturn.put("increment", false);
-            return objReturn;
         } else {
             if (auxPassive.size() > 0) {
                 pasResp.setActualAmount(amountReturn);
-                pasResp.setCommission(comission);
+                pasResp.setCommission(commission);
                 auxPassive.set(0, pasResp);
                 auxCustomer.setPassiveList(auxPassive);
             }
@@ -168,11 +163,12 @@ public class BankAccountServiceImpl implements IBankAccountService {
                 auxActive.set(0, actResp);
                 auxCustomer.setActiveList(auxActive);
             }
-            objReturn.put("auxCustomer", auxCustomer);
             objReturn.put("increment", true);
-            objReturn.put("commissionAmount",comissionAmount);
-            return objReturn;
+            objReturn.put("commissionAmount",commissionAmount);
+
         }
+        objReturn.put("auxCustomer", auxCustomer);
+        return objReturn;
     }
 
 }

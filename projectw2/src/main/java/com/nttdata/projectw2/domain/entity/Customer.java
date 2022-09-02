@@ -2,8 +2,6 @@ package com.nttdata.projectw2.domain.entity;
 import com.nttdata.projectw2.domain.util.constant.CustomerTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
