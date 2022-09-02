@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="960c4199-bf51-4c65-b792-ac03e5c2e21c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/repository/IBankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/repository/IBankAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/BankAccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IBankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/domain/service/IBankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/application/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/application/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/entity/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/IReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/IReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,24 +135,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/projectw1/src/main/java/com/nttdata/projectw1/application/controller/BankAccountController.java</url>
-          <line>32</line>
-          <properties class="com.nttdata.projectw1.application.controller.BankAccountController" method="getAllAmountsByProduct">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/projectw2/src/main/java/com/nttdata/projectw2/domain/service/ReportServiceImpl.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="69" />
+          <line>35</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -76,6 +76,11 @@ public class BankAccountServiceImpl implements IBankAccountService {
         return Mono.just(pasResp);
     }
 
+    @Override
+    public Flux<BankAccount> getAllAmountsByCustomer(String documentNumberCustomer) {
+        return bankAccountRepository.findByDocumentNumberCustomer(documentNumberCustomer);
+    }
+
     private Map<String, Object> actualAmountPerAccountNumber(BankAccount bankAccount) {
         Mono<Customer> customerResponse = customerService.getCustomer(bankAccount.getDocumentNumberCustomer());
         Map<String, Object> objReturn = new HashMap<>();

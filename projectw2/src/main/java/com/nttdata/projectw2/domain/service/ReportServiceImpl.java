@@ -6,10 +6,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,66 +20,60 @@ public class ReportServiceImpl implements IReportService {
     }
 
     @Override
-    public Flux<Report> averageReport(String documentNumber) {
-        //1. Customer per DocumentNumber
-        //  -PassiveList
-        //  -ActiveList
-        Mono<Customer> customerMono = this.webClient.get().uri("/customer/{documentNumber}", documentNumber).retrieve().bodyToMono(Customer.class);
+    public Mono<Report> averageReport(String documentNumber) {
 
-        //2. getAllAmounts per accountNumber
-        //  -BankAccountList
-        Mono<BankAccount> passiveTransfer = null;
+        Flux<BankAccount> respBankAccountCustomer = this.webClient.get()
+                .uri("/bankAccount/getAllAmountsCustomer/{documentNumber}", documentNumber)
+                .retrieve()
+                .bodyToFlux(BankAccount.class);
 
-        List<Flux<BankAccount>> filterBA = new ArrayList<>();
+        int i=0;
+        return respBankAccountCustomer.collectList().flatMap(x-> {
 
-        customerMono.subscribe(v -> {
-            Mono<BankAccount> response = null;
-            System.out.println("-------------ENTRA2 CustomerMono Subscribe--------------");
-            if(v.getPassiveList().size()>0){
-                for (Passive w : v.getPassiveList()) {
-                    String accountNumber = w.getAccountNumber();
-                    System.out.println("AccountNumberPassive: " + accountNumber);
-                    Flux<BankAccount> resp2 = this.webClient.get()
-                            .uri("/bankAccount/getAllAmounts/{accountNumber}", accountNumber)
-                            .retrieve()
-                            .bodyToFlux(BankAccount.class);
-                    System.out.println("-------------PASSIVE BEFORE RESP2.SUBSCRIBE--------------");
-                    resp2.subscribe(x->{
-                        System.out.println("BankAccount passive--: " + x.getDocumentNumberCustomer());
-                        System.out.println("BankAccount passive--: " + x.getAccountNumber());
-                        System.out.println("BankAccount passive--: " + x.getId());
-                        System.out.println("BankAccount passive--: " + x.getCommissionAmount());
-                        System.out.println("BankAccount passive--: " + x.getAmount());
-                        System.out.println("-------------");
-                    });
-                    filterBA.add(resp2);
-                }
-            }
-
-            if(v.getActiveList().size()>0) {
-                for (Active w : v.getActiveList()) {
-                    String accountNumber2 = w.getAccountNumber();
-                    Flux<BankAccount> resp3 = this.webClient.get()
-                            .uri("/bankAccount/getAllAmounts/{accountNumber2}", accountNumber2)
-                            .retrieve()
-                            .bodyToFlux(BankAccount.class);
-                    System.out.println("-------------ACTIVE BEFORE RESP3.SUBSCRIBE--------------");
-                    resp3.subscribe(x->{
-                        System.out.println("BankAccount active--: " + x.getDocumentNumberCustomer());
-                        System.out.println("BankAccount active--: " + x.getAccountNumber());
-                        System.out.println("BankAccount active--: " + x.getId());
-                    });
-
-                    System.out.println("-------------FILTRA ACTIVE--------------");
-                    filterBA.add(resp3);
-                }
-            }
-
+            Report reporte = new Report();
+            reporte.setReportAverage(calculateSum(x));
+            Mono<Report> res = Mono.just(reporte);
+            return res;
         });
 
-        Report response = new Report();
+    }
 
-        return Flux.just(response);
+    private Map<String, Object> calculateSum(List<BankAccount> x) {
+
+        LocalDateTime dateNow = LocalDateTime.now();
+        YearMonth yearMonthObject = YearMonth.of(dateNow.getYear(), dateNow.getMonth());
+        int daysInMonth = yearMonthObject.lengthOfMonth();
+
+        x=x.stream()
+                .filter(m->m.getDate().getMonth().equals(dateNow.getMonth()) && m.getDate().getYear()==(dateNow.getYear()))
+                .collect(Collectors.toList());
+        String[] unique = x.stream().map(BankAccount::getAccountNumber).distinct().toArray(String[]::new);
+
+        double total=0;
+        double commission=0;
+
+        Map<String,Object> mapeo=new HashMap<>();
+
+
+        for(int i =0 ; i<unique.length; i++){
+            mapeo.put("accountNumber"+i,unique[i]);
+
+            for(BankAccount y:x){
+
+                if(unique[i].equals(y.getAccountNumber())){
+                    total+=y.getAmount();
+                    commission += y.getCommissionAmount();
+                }
+
+            }
+
+            total = Math.round(((total-commission)/daysInMonth)*100.0)/100.0;
+            mapeo.put("AveragePerDay"+i,total);
+            total =0;
+            commission = 0;
+        }
+
+        return mapeo;
     }
 
 }

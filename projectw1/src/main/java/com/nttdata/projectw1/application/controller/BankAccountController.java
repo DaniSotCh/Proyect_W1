@@ -1,7 +1,6 @@
 package com.nttdata.projectw1.application.controller;
 
 import com.nttdata.projectw1.domain.entity.BankAccount;
-import com.nttdata.projectw1.domain.entity.Passive;
 import com.nttdata.projectw1.domain.entity.PassiveResponse;
 import com.nttdata.projectw1.domain.entity.ProductList;
 import com.nttdata.projectw1.domain.service.IBankAccountService;
@@ -32,5 +31,10 @@ public class BankAccountController {
     @GetMapping("/getAllAmounts/{accountNumber}")
     public Flux<BankAccount> getAllAmountsByProduct(@PathVariable String accountNumber){
         return bankAccountService.getAllAmountsByProduct(accountNumber);
+    }
+
+    @GetMapping("/getAllAmountsCustomer/{documentNumberCustomer}")
+    public Flux<BankAccount> getAllAmountsByCustomer(@PathVariable String documentNumberCustomer){
+        return bankAccountService.getAllAmountsByCustomer(documentNumberCustomer);
     }
 }
