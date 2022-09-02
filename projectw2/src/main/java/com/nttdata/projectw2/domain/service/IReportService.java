@@ -5,4 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface IReportService {
     Mono<Report> averageReport(String documentNumber);
+
+    Mono<Report> averageCommission(String accountNumber, String amountMonth);
 }

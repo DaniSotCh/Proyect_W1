@@ -16,4 +16,9 @@ public class ReportController {
     public Mono<Report> averageReport(@PathVariable String documentNumber) {
         return reportService.averageReport(documentNumber);
     }
+
+    @GetMapping("/averageCommission/{accountNumber}/{amountMonth}")
+    public Mono<Report> averageCommission(@PathVariable String accountNumber, @PathVariable String amountMonth) {
+        return reportService.averageCommission(accountNumber,amountMonth);
+    }
 }
